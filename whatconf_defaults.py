@@ -21,7 +21,7 @@ SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 ### Use winograd text captcha
 # set to false if you want no captcha
 USE_WINOCAPTCHA=True
-USE_PYCAPTCHA=False # Requires PIL or PILLOW
+USE_PYCAPTCHA=False # Requires PILLOW
 
 # Folder containing mustache templates
 SKIN_FOLDER='skins/join2he'

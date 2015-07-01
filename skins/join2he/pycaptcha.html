@@ -7,12 +7,12 @@
                 </h4>
               </div>
               <label for="#captchaanswer" class="col-md-3">
-                נא להקליד את מה שכתוב בתמונה:
+                נא להקליד את מה שכתוב בתמונה: <div class="badge">לזכור לעבור למקלדת אנגלית <i class="fa fa-smile-o"></i></div>
                 <img class="img-responsive" src="{{imgsrc}}">
               </label>
               <div class="col-md-3">
-                <input style="direction:ltr" class="form-control" id="captchaanswer" name="captcha_answer">
+                <input style="direction:ltr" class="form-control input-lg" id="captchaanswer" name="captcha_answer">
                 {{#error_text}}<div class="alert alert-danger">{{error_text}}</div>{{/error_text}}
-                <input class="btn btn-primary btn-large form-control" type="submit" value="אני אנושי/ת ורוצה להתנדב">
+                <input class="btn btn-primary btn-block btn-lg" type="submit" value="אני אנושי/ת ורוצה להתנדב">
               </div>
             </div>
