@@ -1,0 +1,18 @@
+            <input type="hidden" name="captcha_token" value="{{token}}">
+            <div class="form-group">
+              <div class="col-md-5 col-md-offset-1">
+                <h4>
+                  מבחן <a target="_blank" href="https://he.wikipedia.org/wiki/CAPTCHA">captcha</a> להוכחת אנושיות
+                  <small>(כדי לראות שאת/ה לא רובוט)</small>
+                </h4>
+              </div>
+              <label for="#captchaanswer" class="col-md-3">
+                נא להקליד את מה שכתוב בתמונה:
+                <img class="img-responsive" src="{{imgsrc}}">
+              </label>
+              <div class="col-md-3">
+                <input style="direction:ltr" class="form-control" id="captchaanswer" name="captcha_answer">
+                {{#error_text}}<div class="alert alert-danger">{{error_text}}</div>{{/error_text}}
+                <input class="btn btn-primary btn-large form-control" type="submit" value="אני אנושי/ת ורוצה להתנדב">
+              </div>
+            </div>

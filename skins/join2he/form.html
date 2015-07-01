@@ -1,0 +1,74 @@
+{{> head}}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header pagination-centered">
+        <h1>{{title}} <small>{{{subtitle}}}</small></h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      {{#errorhtml}}
+        <div class="alert alert-danger">
+          {{{errorhtml}}}
+        </div>
+      {{/errorhtml}}
+    </div>
+  </div>
+  <p><i class="fa fa-info-circle"></i> חובה למלא את מה ש<span class="badge">מודגש</span></p>
+  <form class="form-horizontal" name="feedback_form" id="feedback_form" method="post"
+       action="{{scriptname}}">
+    <div class="form-group">
+      <label for="author" class="col-md-1"><span class="badge">כתובת דואל:</span></label>
+      <div class="col-md-11">
+        <input type="email" class="form-control" style="direction:ltr" name="author" id="author" value="{{author}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name" class="col-md-1">שם:</label>
+      <div class="col-md-11">
+        <input class="form-control" name="name" id="name" value="{{name}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone" class="col-md-1">טלפון נייד:</label>
+      <div class="col-md-11">
+        <input type="phone" class="form-control" style="direction:ltr" name="phone" id="phone" value="{{phone}}">
+      </div>
+    </div>
+    {{#fields}}
+      {{#title}}
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <h4>{{title}}{{#subtitle}} <small>{{.}}</small>{{/subtitle}}</h4>
+          </div>
+        </div>
+      {{/title}}
+      {{#item}}
+        <div class="row">
+          <div class="col-md-3">{{item_desc}}:</div>
+          <div class="col-md-9">
+            {{#option0}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option0}}"{{#option0_checked}}checked=checked{{/option0_checked}}> {{option0_desc}}</label>{{/option0}}
+            {{#option1}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option1}}"{{#option1_checked}}checked=checked{{/option1_checked}}> {{option1_desc}}</label>{{/option1}}
+            {{#option2}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option2}}"{{#option2_checked}}checked=checked{{/option2_checked}}> {{option2_desc}}</label>{{/option2}}
+            {{#option3}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option3}}"{{#option3_checked}}checked=checked{{/option3_checked}}> {{option3_desc}}</label>{{/option3}}
+          </div>
+        </div>
+      {{/item}}
+    {{/fields}}
+    <hr>
+    <div class="form-group">
+      <label for="message" class="col-md-1">
+	    הערות והארות:
+      </label>
+      <div class="col-md-11">
+        <textarea class="form-control" rows="4" name="message" id="message">{{message}}</textarea>
+      </div>
+    </div>
+    {{#captchahtml}}
+      {{{captchahtml}}}
+    {{/captchahtml}}
+    {{! Note!!! pycaptcha.html also contains submit button now }}
+  </form>
+{{> foot}}

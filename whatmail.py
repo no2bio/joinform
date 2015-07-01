@@ -6,6 +6,16 @@ import pystache
 stache = pystache.Renderer(
     search_dirs=SKIN_FOLDER,file_encoding='utf-8',string_encoding='utf-8',file_extension='html')
 
+import json
+import csv
+def get_field_definitions(spreadsheet='fields.csv'):
+    sheet = csv.reader(open(spreadsheet))
+    column_names = next(sheet)
+    fields = []
+    for row in sheet:
+        fields.append(dict(zip(column_names,row)))
+    return fields
+
 def is_ssl(env):
     return env.get('HTTPS','').lower()=='on' or env.get('HTTP_HTTPS','').lower()=='on'
 
@@ -13,6 +23,8 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
            keyfile = SMTP_KEYFILE, certfile = SMTP_CERTFILE,
            username = SMTP_USERNAME, password = SMTP_PASSWORD,
            author = "nobody",
+           name = "",
+           phone = "",
            ip = None,
            subject = "no subject",
            message = "no message"):
@@ -25,6 +37,8 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
         'author':author,
         'iptext':ip and ('IP number: %s, ' % ip) or '',
         'gmtime':asctime(gmtime()),
+        'name':name,
+        'phone':phone,
         'message':message,
     }).encode('utf-8')
     if GPG_ENABLED:
@@ -70,6 +84,7 @@ def webit():
         return
     print 'Content-type: text/html; charset=utf-8\n'
     form = cgi.FieldStorage()
+    fields = get_field_definitions()
     if os.environ['REQUEST_METHOD']=='GET':
         print stache.render(stache.load_template('form'),{
             'skin':SKIN_FOLDER,
@@ -78,6 +93,7 @@ def webit():
             'title':PAGE_TITLE,
             'subtitle':is_encrypted and SECURE_PAGE_SUBTITLE or PAGE_SUBTITLE,
             'author':'',
+            'fields':fields,
             'message':'',
             'captchahtml':captcha_html(),
             'is_encrypted': is_encrypted,
@@ -104,6 +120,14 @@ def webit():
             elif not captcha_result: # Good question, wrong answer :)
                 errors.append(MSG_CAPTCHA_FAILED)
                 captcha_error=MSG_CAPTCHA_TRY_AGAIN
+        import json
+        for f in fields:
+            val = form.getvalue(f['item'])
+            f['value'] = val
+            for i in range(4):
+                if val==f['option{}'.format(i)]:
+                    f['option{}_checked'.format(i)] = True  # mustache template needs it
+                    f['value_desc'] = f['option{}_desc'.format(i)]
         if errors:
             errors = filter(None,errors) # skip empty messages (see winolb.check_answer above)
             errorhtml = errors and '<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors])) or ''
@@ -114,10 +138,18 @@ def webit():
                 'errorhtml':errorhtml,
                 'author':author,
                 'message':form.getvalue('message',''),
+                'name':form.getvalue('name',''),
+                'phone':form.getvalue('phone',''),
+                'fields':fields,
                 'captchahtml':captcha_html(error_text=captcha_error),
                 'is_encrypted': GPG_ENABLED,
             }).encode('utf-8')
         else:
+            message = ""
+            for f in fields:
+                if 'value_desc' in f:
+                    message += "{}: {}\n".format(f.get('item_desc','???'),f.get('value_desc','???'))
+            message += form.getvalue('mesage','***no comment***')
             try:
                 try: # create subject lines one can distinguish between ;)
                     from WinoCaptcha import winolib
@@ -125,11 +157,12 @@ def webit():
                 except:
                     subject = 'Form submission'
                 sendit(author=form.getvalue('author'), ip=os.environ['REMOTE_ADDR'],
-                    subject=subject, message=form.getvalue('message','(empty message)'))
+                    subject=subject, message=message, name=form.getvalue('name',''),phone=form.getvalue('phone',''))
                 print stache.render(stache.load_template('success'),{
                     'skin':SKIN_FOLDER,
                     'title':MSG_SUCCESS_TITLE,
                     'sender':form.getvalue('author'),
+                    'name':form.getvalue('name',''),
                     'subject':form.getvalue('subject')
                 }).encode('utf-8')
             except Exception,e:

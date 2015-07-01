@@ -14,9 +14,9 @@ SMTP_PASSWORD='*******'
 SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 
 ### Supported captcha libraries ###
-# There are 3 options (in order of priority):
+# There are 2 options (in order of priority):
 # 1) Winograd text captcha (the default)
-# 2) PyCaptcha (requires installing PIL or PILLOW)
+# 2) PyCaptcha (requires installing PILLOW)
 
 ### Use winograd text captcha
 # set to false if you want no captcha
@@ -24,16 +24,23 @@ USE_WINOCAPTCHA=True
 USE_PYCAPTCHA=False # Requires PIL or PILLOW
 
 # Folder containing mustache templates
-SKIN_FOLDER='skins/default'
+SKIN_FOLDER='skins/join2he'
+#SKIN_FOLDER='skins/default'
 ## ובעברית...
 # SKIN_FOLDER='skins/hebrew'
 
 # Messages
-MSG_EMPTY_FROM="Empty name/email. I need to know how to get back to you."
-MSG_CAPTCHA_FAILED="You've failed the captcha test. Convince me again that you're not a robot."
-MSG_CAPTCHA_TRY_AGAIN="Try to get it right this time :)"
-MSG_SUCCESS_TITLE="Mesage sent"
-MSG_FAIL_TITLE="Mesage sending failed"
+MSG_EMPTY_FROM="לא הכנסת כתובת דואל"
+MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
+MSG_CAPTCHA_TRY_AGAIN="עכשיו ברצינות ;)"
+MSG_SUCCESS_TITLE="הטופס נשלח"
+MSG_FAIL_TITLE="תקלה בשליחת הטופס"
+
+#MSG_EMPTY_FROM="Empty name/email. I need to know how to get back to you."
+#MSG_CAPTCHA_FAILED="You've failed the captcha test. Convince me again that you're not a robot."
+#MSG_CAPTCHA_TRY_AGAIN="Try to get it right this time :)"
+#MSG_SUCCESS_TITLE="Mesage sent"
+#MSG_FAIL_TITLE="Mesage sending failed"
 
 ## ובעברית...
 #MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
