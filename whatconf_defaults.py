@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-DEBUG_TO_WEB=False # set to True when debugging
-PAGE_TITLE='Write to yours truly'
-PAGE_SUBTITLE='A contact form' # html is allowed here
-SECURE_PAGE_SUBTITLE='A secure contact form' # subtitle when both gpg and ssl are on. html allowed.
+DEBUG_TO_WEB=True # set to True when debugging
+PAGE_TITLE='מתנדבים למאבק במאגר הביומטרי'
+PAGE_SUBTITLE='רוצים לעזור? ספרו לנו איך' # html is allowed here
+SECURE_PAGE_SUBTITLE='רוצים לעזור? ספרו לנו איך' # subtitle when both gpg and ssl are on. html allowed.
 SMTP_FROM='myself@gmail.com' # An email address that you're allowed to send from
 SMTP_TOS=['me@home.org','gang@work.com'] # list of recepients
 SMTP_HOST='smtp.gmail.com' # This is for gmail, depends on your mail provider
