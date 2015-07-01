@@ -149,7 +149,7 @@ def webit():
             for f in fields:
                 if 'value_desc' in f:
                     message += "{}: {}\n".format(f.get('item_desc','???'),f.get('value_desc','???'))
-            message += form.getvalue('mesage','***no comment***')
+            message += form.getvalue('message','***no comment***')
             try:
                 try: # create subject lines one can distinguish between ;)
                     from WinoCaptcha import winolib
