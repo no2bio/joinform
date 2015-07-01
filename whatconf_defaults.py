@@ -29,6 +29,8 @@ SKIN_FOLDER='skins/join2he'
 ## ובעברית...
 # SKIN_FOLDER='skins/hebrew'
 
+FIELD_SPREADSHEET='fields-he.csv'
+
 # Messages
 MSG_EMPTY_FROM="לא הכנסת כתובת דואל"
 MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"

@@ -1,0 +1,91 @@
+{{> head}}
+  <div class="row jumbotron">
+    <div class="col-md-12">
+      <h1 class="text-center">{{title}}<br><small>{{{subtitle}}}</small></h1>
+      <p class="lead">חברים יקרים,</p>
+      <p>
+        כפי שבוודאי שמתם לב - המאבק במאגר הביומטרי נמצא בימים אלו בכותרות, ואנו
+        מגייסים מתנדבות ומתנדבים נוספים לתמיכה במאבק וקידומו.
+      </p>
+      <p>
+        הצורך במתנדבים הוא בכל התחומים, מקצועיים ושאינם מקצועיים. מבניית צוות
+        תגובות שיצור נוכחות תקשורתית בידיעות רלוונטיות, דרך איוש עמדות הסברה
+        בלשכות האוכלוסין ובמרכזים מסחריים - ועד עזרה מקצועית בהפקת סרטוני הסברה,
+        ייעוץ משפטי ולובינג.
+      </p>
+      <p>
+        נודה לכם על מילוי פרטיכם בטופס המצורף והפצתו בקרב חברים ומכרים נוספים.
+        הפרטים שייאספו ישמשו אך ורק לצורך הפעילות נגד המאגר הביומטרי, ליצירת
+        קשר בין הפעילים עצמם.
+      </p>
+      <p>
+        כל הפרטים יימחקו עם סיום המאבק במאגר הביומטרי.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      {{#errorhtml}}
+        <div class="alert alert-danger">
+          {{{errorhtml}}}
+        </div>
+      {{/errorhtml}}
+    </div>
+  </div>
+  <p><i class="fa fa-info-circle"></i> חובה למלא את מה ש<span class="badge" style="font-size: 110%">מודגש</span></p>
+  <form class="form-horizontal" name="feedback_form" id="feedback_form" method="post"
+       action="{{scriptname}}">
+    <div class="form-group well">
+      <label for="author" class="col-md-1"><span class="badge" style="font-size: 110%">כתובת דואל:</span></label>
+      <div class="col-md-11">
+        <input type="email" class="form-control" style="direction:ltr" name="author" id="author" value="{{author}}">
+      </div>
+    </div>
+    <div class="form-group well">
+      <label for="name" class="col-md-1">שם:</label>
+      <div class="col-md-11">
+        <input class="form-control" name="name" id="name" value="{{name}}">
+      </div>
+    </div>
+    <div class="form-group well">
+      <label for="phone" class="col-md-1">טלפון נייד:</label>
+      <div class="col-md-11">
+        <input type="phone" class="form-control" style="direction:ltr" name="phone" id="phone" value="{{phone}}">
+      </div>
+    </div>
+    {{#fields}}
+      {{#title}}
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <h4>{{title}}{{#subtitle}} <small>{{.}}</small>{{/subtitle}}</h4>
+          </div>
+        </div>
+      {{/title}}
+      {{#item}}
+        <div class="row well">
+          <div class="col-md-3">{{item_desc}}:</div>
+          <div class="col-md-9">
+            {{#option0}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option0}}"{{#option0_checked}}checked=checked{{/option0_checked}}> {{option0_desc}}</label>{{/option0}}
+            {{#option1}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option1}}"{{#option1_checked}}checked=checked{{/option1_checked}}> {{option1_desc}}</label>{{/option1}}
+            {{#option2}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option2}}"{{#option2_checked}}checked=checked{{/option2_checked}}> {{option2_desc}}</label>{{/option2}}
+            {{#option3}}<label class="radio-inline"><input type="radio" name="{{item}}" value="{{option3}}"{{#option3_checked}}checked=checked{{/option3_checked}}> {{option3_desc}}</label>{{/option3}}
+          </div>
+        </div>
+      {{/item}}
+    {{/fields}}
+    <hr>
+    <div class="form-group well">
+      <label for="message" class="col-md-1">
+	    הערות והארות:
+      </label>
+      <div class="col-md-11">
+        <textarea class="form-control" rows="4" name="message" id="message">{{message}}</textarea>
+      </div>
+    </div>
+    {{#captchahtml}}
+      {{{captchahtml}}}
+    {{/captchahtml}}
+    {{! Note!!! pycaptcha.html also contains submit button now }}
+  </form>
+{{> foot}}

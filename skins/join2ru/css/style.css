@@ -1,0 +1,78 @@
+#sidebar, #widget { margin-top: 3em }
+.sidebar-title h2 {
+    color: #FFF;
+    font-size: 1.5em;
+    margin-top: 0px;
+    background-color: #D22027;
+    margin-bottom: 0px;
+    padding: 6px;
+}
+
+.sidebar-below-title {
+    background: url("../graphics/img_under_title.gif") no-repeat scroll 0% 0%;
+    background-size: cover;
+    width: 100%;
+    height: 26px;
+}
+
+pre, code, .ltr { direction:ltr; text-align:left }
+
+/* Begin captionbox see .simple-caption at
+   http://www.hongkiat.com/blog/css3-image-captions/ */
+
+.captionbox {
+    border: 5px solid #fff;
+    cursor: pointer;
+    height: 200px;
+    float: left;
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+/*
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+*/
+}
+
+.feature-item .captionbox {
+    height: 250px
+}
+
+.captionbox img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.captionbox .caption {
+    background-color: rgba(180,180,180,0.8);
+    position: absolute;
+    color: #000;
+    z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    display: block;
+    bottom: -60px;
+    padding: 4px 16px;
+}
+
+.feature-item .captionbox .caption {
+    background-color: rgba(180,180,180,0.9);
+}
+
+.captionbox:hover .caption {
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+/* end captionbox */

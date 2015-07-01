@@ -8,7 +8,7 @@ stache = pystache.Renderer(
 
 import json
 import csv
-def get_field_definitions(spreadsheet='fields.csv'):
+def get_field_definitions(spreadsheet):
     sheet = csv.reader(open(spreadsheet))
     column_names = next(sheet)
     fields = []
@@ -84,7 +84,7 @@ def webit():
         return
     print 'Content-type: text/html; charset=utf-8\n'
     form = cgi.FieldStorage()
-    fields = get_field_definitions()
+    fields = get_field_definitions(FIELD_SPREADSHEET)
     if os.environ['REQUEST_METHOD']=='GET':
         print stache.render(stache.load_template('form'),{
             'skin':SKIN_FOLDER,
